@@ -1,0 +1,30 @@
+#! /bin/sh
+
+URL='https://raw.github.com/ptomulik/schema2ldif/master/schema2ldif';
+SCRIPTDIR=$(dirname $(realpath $0));
+TOPDIR=$(realpath "${SCRIPTDIR}/..")
+SCHEMADIR=$(realpath "${TOPDIR}/schema");
+SCHEMA="${SCHEMADIR}/uniquelyidentified";
+
+test -f "${SCHEMA}.schema" || { echo "No ${SCHEMA}.schema file!" >&2; exit 1; }
+
+RET=0;
+if wget -O schema2ldif $URL; then
+  test -e "${SCHEMA}.ldif" && mv "${SCHEMA}.ldif" "${SCHEMA}.ldif-old";
+  if perl schema2ldif "${SCHEMA}.schema"; then
+    test -f "${SCHEMA}.ldif" \
+    && test -f "${SCHEMA}.ldif-old" \
+    && rm "${SCHEMA}.ldif-old";
+  else
+    test -f "${SCHEMA}.ldif-old" \
+    && mv "${SCHEMA}.ldif-old" "${SCHEMA}.ldif"; 
+    echo "Can't convert schema to ldif!" >&2;
+    RET=1;
+  fi
+else
+  echo "Can't download schema2ldif script!" >&2;
+  RET=1
+fi
+
+test -f "schema2ldif" && rm "schema2ldif";
+exit $RET;

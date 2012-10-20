@@ -1,0 +1,9 @@
+1. Regenerate *.ldif file from *.schema
+=======================================
+
+./tools/regenerate-ldif
+
+2. Add generated *.ldif schema to OpenLDAP server
+=================================================
+
+sudo ldapadd -Y EXTERNAL -H ldapi:/// < schema/uniquelyidentified.ldif
