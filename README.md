@@ -10,8 +10,8 @@ WORD OF CAUTION
 
 This is experimental schema. It is possible, that the object classes defined
 here may collide with some objects from other schemas. Before installing it
-into your production machine check your other schemas. It is also advisable to
-test it on non-production directory server first.
+in your production environment check your other schemas. It is also advisable
+to test it in non-production setup first.
 
 INTRODUCTION
 ============
