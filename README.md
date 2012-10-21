@@ -17,14 +17,13 @@ INTRODUCTION
 ============
 The **uniqueIdentifier** attribute is defined in
 [cosine.schema](http://tools.ietf.org/html/rfc4524#section-2.24). However,
-there seems to be no schema available containing objects with this attribute
-which could be used in OpenLDAP. This attribute was previously part of the
-**pilotObject** object defined by
-[RFC1274](http://www.ietf.org/rfc/rfc1274.txt) and was also inherited by
-**pilotPerson** object class. However, the RFC1274 was obsoleted by more recent
-**RFC4524**, and the **pilotObject** is no longer provided (see **RFC4524**
-[Appendix-A.2](http://tools.ietf.org/html/rfc4524#appendix-A.2)). In the
-current version of OpenLDAP (2.4.31) the **cosine.schema** still defines
+there seems to be no OpenLDAP schema available containing objects with this
+attribute. This attribute was previously part of the **pilotObject** object
+defined by [RFC1274](http://www.ietf.org/rfc/rfc1274.txt) and was also
+inherited by **pilotPerson** object class. However, the RFC1274 was obsoleted
+by more recent **RFC4524**, and the **pilotObject** is no longer provided (see
+**RFC4524** [Appendix-A.2](http://tools.ietf.org/html/rfc4524#appendix-A.2)).
+In the current version of OpenLDAP (2.4.31) the **cosine.schema** still defines
 the **pilotPerson**, but **pilotObject** is not there anymore.
 
 The **uniqueIdentifier** may be easily used in OpenLDAP by adding
@@ -45,12 +44,13 @@ This schema depends on **cosine.schema** and its dependencies.
 INSTALLATION
 ============
 
-The files to install are located within **schema** directory. The
-**uniquelyidentified.schema** may be used for traditionally configured servers.
-Follow standard instructions for your directory server. For OpenLDAP with
-new-style config (olcXxx) use **uniquelyidentified.ldif** as follows:
+The files to install are located in the **schema** directory. The
+**schema/uniquelyidentified.schema** may be used for traditionally configured
+servers. Follow standard instructions for your directory server. For OpenLDAP
+with new-style config (olcXxx) use **schema/uniquelyidentified.ldif** as
+follows:
 
-`ldapadd -Y EXTERNAL -H ldapi:/// < uniquelyidentified.ldif`
+`sudo ldapadd -Y EXTERNAL -H ldapi:/// < schema/uniquelyidentified.ldif`
 
 LICENSE
 =======
